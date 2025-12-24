@@ -1,15 +1,14 @@
-from src.data.load_data import load_raw_data
-from src.data.preprocess import preprocess_movies
-from src.features.vectorizer import build_similarity_matrix
+import pickle
 from src.models.recommender import MovieRecommender
 
+# Load prebuilt artifacts
+with open("models/clean_df.pkl", "rb") as f:
+    clean_df = pickle.load(f)
 
-if __name__ == "__main__":
-    df = load_raw_data()
-    clean_df = preprocess_movies(df)
+with open("models/similarity.pkl", "rb") as f:
+    similarity = pickle.load(f)
 
-    similarity, _ = build_similarity_matrix(clean_df)
+# Initialize recommender
+recommender = MovieRecommender(clean_df, similarity)
 
-    recommender = MovieRecommender(clean_df, similarity)
-
-    print(recommender.recommend("Spider-Man"))
+print(recommender.recommend("Spider-Man"))
