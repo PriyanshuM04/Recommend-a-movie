@@ -5,3 +5,4 @@ Flask
 nltk
 requests
 python-dotenv
+gunicorn

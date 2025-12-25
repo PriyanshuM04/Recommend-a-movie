@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
-from flask import render_template, request
+from flask import render_template, request, Blueprint
 from app import app
 from src.models.recommender import MovieRecommender
 import pickle
@@ -53,3 +53,7 @@ def fetch_poster(movie_title):
         print(f"TMDB error for '{movie_title}':", e)
 
     return None
+
+
+bp = Blueprint("main", __name__)
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")

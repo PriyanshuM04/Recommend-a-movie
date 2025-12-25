@@ -210,6 +210,8 @@ template.py
 
 # Ignore CSV dataset files
 /data/raw/*.csv
+data/processed/*.csv
 
 # Pickled artifacts
 /models/*.pkl
+.pkl
