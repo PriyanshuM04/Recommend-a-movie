@@ -213,5 +213,4 @@ template.py
 data/processed/*.csv
 
 # Pickled artifacts
-/models/*.pkl
-.pkl
+/models/similarity.pkl
