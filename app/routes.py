@@ -12,11 +12,15 @@ TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 bp = Blueprint("main", __name__)
 
 # Load pickled artifacts
-with open("models/clean_df.pkl", "rb") as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR = os.path.join(BASE_DIR, "..", "models")
+
+with open(os.path.join(MODELS_DIR, "clean_df.pkl"), "rb") as f:
     clean_df = pickle.load(f)
 
-with open("models/similarity.pkl", "rb") as f:
+with open(os.path.join(MODELS_DIR, "similarity.pkl"), "rb") as f:
     similarity = pickle.load(f)
+
 
 recommender = MovieRecommender(clean_df, similarity)
 
