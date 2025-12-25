@@ -12,9 +12,15 @@
         <button type="submit">Recommend</button>
     </form>
     <ul>
-        {% for movie in recommendations %}
-            <li>{{ movie }}</li>
+        {% for movie, poster in recommendations %}
+            <li>
+                <strong>{{ movie }}</strong><br>
+                {% if poster %}
+                    <img src="{{ poster }}" alt="{{ movie }}" width="150">
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
+
 </body>
 </html>
