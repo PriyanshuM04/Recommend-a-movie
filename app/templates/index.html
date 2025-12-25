@@ -2,25 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Recommend a movie</title>
+    <title>Movie Recommender</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Movie Recommendation System</h1>
+
+<div class="container">
+    <h1>🎬 Movie Recommender</h1>
+    <p class="subtitle">Get movie recommendations based on your favorite movie</p>
+
     <form method="POST">
-        <input type="text" name="movie" placeholder="Enter a movie name" required>
+        <input
+            type="text"
+            name="movie"
+            placeholder="Enter a movie name"
+            required
+        >
         <button type="submit">Recommend</button>
     </form>
-    <ul>
-        {% for movie, poster in recommendations %}
-            <li>
-                <strong>{{ movie }}</strong><br>
-                {% if poster %}
-                    <img src="{{ poster }}" alt="{{ movie }}" width="150">
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+
+    {% if recommendations %}
+        <h2>Recommended Movies</h2>
+        <div class="movies">
+            {% for movie, poster in recommendations %}
+                <div class="movie-card">
+                    {% if poster %}
+                        <img src="{{ poster }}" alt="{{ movie }}">
+                    {% else %}
+                        <div class="no-poster">No Image</div>
+                    {% endif %}
+                    <p>{{ movie }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 
 </body>
 </html>
